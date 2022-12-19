@@ -16,17 +16,17 @@ import { SystemMiddleware } from '../auth/system.middleware';
   providers: [SystemService],
 })
 
-export class SystemModule {
-  // configure(consumer: MiddlewareConsumer) { implements NestModule
-  //   consumer.apply(SystemMiddleware).forRoutes({
-  //     path: 'system/:_id', method: RequestMethod.ALL,
-  //   });
-  //   consumer.apply(PreauthMiddleware).forRoutes({
-  //     path: 'system', method: RequestMethod.GET,
-  //   });
-  //   consumer.apply(AddSystemMiddleware).forRoutes({
-  //     path: 'system', method: RequestMethod.POST,
-  //   });
-  // }
+export class SystemModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(SystemMiddleware).forRoutes({
+      path: 'system/:_id', method: RequestMethod.ALL,
+    });
+    consumer.apply(PreauthMiddleware).forRoutes({
+      path: 'system/ofAdmin', method: RequestMethod.GET,
+    });
+    consumer.apply(AddSystemMiddleware).forRoutes({
+      path: 'system', method: RequestMethod.POST,
+    });
+  }
 }
 

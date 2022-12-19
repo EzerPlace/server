@@ -23,8 +23,8 @@ export class SystemController {
   async getAllSystems() {
     return await this.systemService.getAllSystems();
   }
-  
-  @Get()
+
+  @Get('ofAdmin')
   async getSystemsOfAdmin(@Req() request: Request) {
     return await this.systemService.getSystemsOfAdmin(request['user'].uid);
   }
