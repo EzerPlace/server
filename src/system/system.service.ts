@@ -31,6 +31,10 @@ export class SystemService {
     return await newSystem.save();
   }
 
+  async getAllSystems() {
+    return await this.systemModel.find().exec();
+  }
+
   async getSystemById(id: string) {
     return await this.systemModel.findById(id).exec();
   }

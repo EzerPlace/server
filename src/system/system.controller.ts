@@ -20,6 +20,11 @@ export class SystemController {
   constructor(private systemService: SystemService) { }
 
   @Get()
+  async getAllSystems() {
+    return await this.systemService.getAllSystems();
+  }
+  
+  @Get()
   async getSystemsOfAdmin(@Req() request: Request) {
     return await this.systemService.getSystemsOfAdmin(request['user'].uid);
   }
