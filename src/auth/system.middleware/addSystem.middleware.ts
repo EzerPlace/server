@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { app } from './firebase.middleware';
-import { SystemService } from '../system/system.service';
+import { app } from '../firebase.middleware';
+import { SystemService } from '../../system/system.service';
 
 @Injectable()
 export class AddSystemMiddleware implements NestMiddleware {
@@ -17,7 +17,7 @@ export class AddSystemMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: Function) {
         const token = req.headers.authorization;
-        const _id = req.params._id;
+        // const _id = req.params._id;
         if (token != null && token != '') {
             try {
                 const decodedToken = await this.defaultApp.auth().verifyIdToken(token.replace('Bearer ', ''));

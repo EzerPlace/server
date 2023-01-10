@@ -2,11 +2,11 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { app } from './firebase.middleware';
-import { SystemService } from '../system/system.service';
+import { app } from '../firebase.middleware';
+import { SystemService } from '../../system/system.service';
 
 @Injectable()
-export class SystemMiddleware implements NestMiddleware {
+export class UpdateMarkerMiddleware implements NestMiddleware {
     private defaultApp: any;
     
     constructor(private systemService: SystemService) {
@@ -15,23 +15,24 @@ export class SystemMiddleware implements NestMiddleware {
 
     async use(req: Request, res: Response, next: Function) {
         const token = req.headers.authorization;
-        const _id = req.params._id;
+
         if (token != null && token != '') {
             try {
                 const decodedToken = await this.defaultApp.auth().verifyIdToken(token.replace('Bearer ', ''));
                 const user = {
                     uid: decodedToken.uid,
-                    email: decodedToken.email
                 }
                 req['user'] = user;
 
-                const system = await this.systemService.getSystemById(_id);
-                if (system.adminUid === user.uid) {
+                const system = await this.systemService.getSystemById(req.body.system_id)
+                
+                if (system.adminUid == user.uid || req.body.manager_id == user.uid) {
                     next();
                 }
                 else {
                     this.accessDenied(req.url, res);
                 }
+
             } catch (error) {
                 console.error(error);
                 this.accessDenied(req.url, res);

@@ -12,10 +12,10 @@ import { UserService } from './user.service';
   providers: [UserService],
 })
 
-export class UserModule {
-  // configure(consumer: MiddlewareConsumer) { implements NestModule
-  //   consumer.apply(PreauthMiddleware).forRoutes({
-  //     path: 'user*', method: RequestMethod.ALL,
-  //   });
-  // }
+export class UserModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(PreauthMiddleware).forRoutes({
+      path: 'user*', method: RequestMethod.ALL,
+    });
+  }
 }

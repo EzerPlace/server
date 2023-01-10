@@ -14,15 +14,15 @@ import {
   export class MarkerController {
     constructor(private markerService: MarkerService) { }
   
-    @Get()
-    async getAll() {
-      try {
-        return await this.markerService.getMarkers();
-      } catch (err) {
-        console.log(err);
-        return err;
-      }
-    }
+    // @Get()
+    // async getAll() {
+    //   try {
+    //     return await this.markerService.getMarkers();
+    //   } catch (err) {
+    //     console.log(err);
+    //     return err;
+    //   }
+    // }
   
     @Get(':_id')
     async getMarkerById(@Param('_id') _id: string) {
