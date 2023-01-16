@@ -22,9 +22,9 @@ export class SystemModule implements NestModule {
     consumer.apply(PreauthMiddleware).forRoutes({
       path: 'system/ofAdmin', method: RequestMethod.GET,
     });
-    // consumer.apply(SystemMiddleware).forRoutes({
-    //   path: 'system/:_id', method: RequestMethod.ALL,
-    // });
+    consumer.apply(SystemMiddleware).forRoutes({
+      path: 'system/:_id', method: RequestMethod.ALL,
+    });
     consumer.apply(AddSystemMiddleware).forRoutes({
       path: 'system', method: RequestMethod.POST,
     });

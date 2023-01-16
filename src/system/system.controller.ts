@@ -31,7 +31,6 @@ export class SystemController {
 
   @Get(':_id')
   async getSystemById(@Param('_id') _id: string) {
-    console.log('im enter here to line 35 system controller');
     try {
       return await this.systemService.getSystemById(_id);
     } catch (err) {
