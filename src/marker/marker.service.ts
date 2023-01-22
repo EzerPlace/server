@@ -40,7 +40,7 @@ export class MarkerService {
     }
 
     async getMarkersOfSystem(systemId: string) {
-        return await this.markerModel.find({ systemId: systemId }).exec();
+        return await this.markerModel.find({ system_id: systemId }).exec();
     }
 
     async updateMarker(

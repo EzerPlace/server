@@ -11,9 +11,7 @@ import {
   Put,
   Req,
 } from '@nestjs/common';
-// import * as common from '@nestjs/common';
 import { SystemService } from './system.service';
-import console from 'console';
 
 @Controller('system')
 export class SystemController {

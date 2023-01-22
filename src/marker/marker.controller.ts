@@ -37,6 +37,7 @@ import {
     @Get('systemsMarkers/:systemUid')
     async getMarkersOfSystem(@Param('systemUid') systemUid: string) {
       return await this.markerService.getMarkersOfSystem(systemUid);
+       
     }
   
     @Post()
