@@ -3,11 +3,11 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MailController } from './sendGrid.controller';
 import { SendGridSchema } from './sendGrid.model';
-import { SendgridService } from './sendGrid.service';
+import { SendGridService } from './sendGrid.service';
  
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'SendGrid', schema: SendGridSchema }])],
   controllers: [MailController],
-  providers: [SendgridService],
+  providers: [SendGridService],
 })
 export class SendGridModule {}
